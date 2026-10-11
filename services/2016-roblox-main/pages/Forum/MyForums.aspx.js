@@ -6,3 +6,9 @@ const MyForumsPage = props => {
 }
 
 export default MyForumsPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
