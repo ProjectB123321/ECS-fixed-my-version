@@ -37,3 +37,9 @@ const MyCharacterPage = props => {
 }
 
 export default MyCharacterPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
