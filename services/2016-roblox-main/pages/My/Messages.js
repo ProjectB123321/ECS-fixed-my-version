@@ -9,3 +9,8 @@ const MyMessagesPage = props => {
 }
 
 export default MyMessagesPage;
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
