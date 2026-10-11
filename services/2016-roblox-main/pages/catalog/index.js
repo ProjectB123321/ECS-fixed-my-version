@@ -54,16 +54,12 @@ const CatalogPage = props => {
     </CatalogPageStore.Provider>
 }
 
-CatalogPage.getInitialProps = () => {
-  return {
-    title: 'Catalog - ROBLOX',
-  }
-}
-
 export default CatalogPage;
 
 export async function getServerSideProps() {
   return {
-    props: {},
+    props: {
+      title: 'Catalog - ROBLOX',
+    },
   };
 }
