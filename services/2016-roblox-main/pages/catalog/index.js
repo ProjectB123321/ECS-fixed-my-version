@@ -61,3 +61,9 @@ CatalogPage.getInitialProps = () => {
 }
 
 export default CatalogPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
