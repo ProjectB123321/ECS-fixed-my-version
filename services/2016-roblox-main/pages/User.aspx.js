@@ -4,16 +4,14 @@ const UserPage = props => {
   return null;
 }
 
-
-export async function getServerSideProps({ query, res, req }) {
-  const userId = query['ID'];
+export async function getServerSideProps({ query }) {
+  const userId = query?.['ID'] || '';
   return {
     redirect: {
       destination: `/users/${userId}/profile`,
+      permanent: false,
     },
-    props: {}
   };
 }
-
 
 export default UserPage;
