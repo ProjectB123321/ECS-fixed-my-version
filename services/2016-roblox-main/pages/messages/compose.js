@@ -92,3 +92,9 @@ const ComposeMessagePage = props => {
 }
 
 export default ComposeMessagePage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
