@@ -7,3 +7,9 @@ const DownloadPage = () => {
 }
 
 export default DownloadPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
