@@ -14,7 +14,13 @@ export default function AuthenticatedHomePage() {
 export const getStaticProps = () => {
   return {
     props: {
-      title: 'Home - ROBLOX',
+      title: 'Home - Eggs21',
     },
   }
+}
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
 }
