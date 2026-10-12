@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 import AdBanner from "./ad/adBanner";
 import CatalogFilters from "./catalogFilters";
@@ -22,7 +22,15 @@ const useStyles = createUseStyles({
 });
 
 export default function CatalogContent() {
+  const [isMounted, setIsMounted] = useState(false);
   const s = useStyles();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
+
   return (
     <CatalogPageStore.Provider>
       <div className='container mt-4'>
