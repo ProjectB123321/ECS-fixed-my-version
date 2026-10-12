@@ -15,3 +15,9 @@ const UserProfilePage = props => {
 }
 
 export default UserProfilePage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
