@@ -113,3 +113,9 @@ export const config = {
 export {
   UrlUtilities,
 }
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
