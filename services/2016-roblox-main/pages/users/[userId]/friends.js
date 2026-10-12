@@ -9,9 +9,6 @@ const UserFriends = dynamic(() => import("../../../components/userFriends"), { s
 const UserFriendsPage = props => {
   const { userId } = props;
 
-  if (!userId)
-    return null;
-
   return (
     <Theme2016>
       <UserFriendsStore.Provider>
