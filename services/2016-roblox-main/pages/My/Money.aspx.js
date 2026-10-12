@@ -9,3 +9,9 @@ const MyMoneyPage = props => {
 }
 
 export default MyMoneyPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
