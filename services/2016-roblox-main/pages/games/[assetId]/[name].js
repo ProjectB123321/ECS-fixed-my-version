@@ -21,13 +21,13 @@ export async function getServerSideProps() {
   try {
     return {
       props: {
-        title: 'Game - Eggs21',
+        title: 'Games - Eggs21',
       },
     };
   } catch (err) {
     return {
       props: {
-        title: 'Game - Eggs21',
+        title: 'Games - Eggs21',
       },
     };
   }
