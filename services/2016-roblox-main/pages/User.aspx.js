@@ -1,17 +1,24 @@
-import { useRouter } from "next/dist/client/router";
-
 const UserPage = props => {
   return null;
 }
 
 export async function getServerSideProps({ query }) {
-  const userId = query?.['ID'] || '';
-  return {
-    redirect: {
-      destination: `/users/${userId}/profile`,
-      permanent: false,
-    },
-  };
+  try {
+    const userId = query?.['ID'] || '';
+    return {
+      redirect: {
+        destination: `/users/${userId}/profile`,
+        permanent: false,
+      },
+    };
+  } catch (err) {
+    return {
+      redirect: {
+        destination: '/home',
+        permanent: false,
+      },
+    };
+  }
 }
 
 export default UserPage;
