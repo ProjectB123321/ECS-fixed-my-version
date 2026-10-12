@@ -16,3 +16,9 @@ const AddPostPage = props => {
 }
 
 export default AddPostPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
