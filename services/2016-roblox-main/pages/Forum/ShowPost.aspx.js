@@ -30,6 +30,7 @@ export async function getServerSideProps(context) {
         id: null,
         page: 1,
         posts: [],
+        title: 'View Post - Eggs21',
       },
     };
   }
@@ -46,6 +47,7 @@ export async function getServerSideProps(context) {
         id,
         page: pageNumber,
         posts: replies || [],
+        title: 'View Post - Eggs21',
       },
     };
   } catch (err) {
@@ -54,6 +56,7 @@ export async function getServerSideProps(context) {
         id,
         page: pageNumber,
         posts: [],
+        title: 'View Post - Eggs21',
       },
     };
   }
