@@ -8,3 +8,8 @@ const UserInventoryPage = props => {
 }
 
 export default UserInventoryPage;
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
