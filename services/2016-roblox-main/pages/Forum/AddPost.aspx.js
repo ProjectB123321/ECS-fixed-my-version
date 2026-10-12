@@ -1,22 +1,12 @@
 import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
+import React from "react";
 
-// Sunucu tarafında hata vermemesi için dinamik import kullanıyoruz
+// Sunucu tarafında hata vermemesi için bileşenleri dinamik olarak yüklüyoruz
 const ForumThreadCreate = dynamic(() => import("../../components/forumThreadCreate"), { ssr: false });
 const ForumPostReply = dynamic(() => import("../../components/forumPostReply"), { ssr: false });
 
 const AddPostPage = props => {
   const { subId, id } = props;
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  // Build ve ilk sunucu render aşamasında bileşenlerin çalışmasını tamamen engelliyoruz
-  if (!isMounted) {
-    return null;
-  }
 
   if (subId)
     return <ForumThreadCreate id={subId} />;
