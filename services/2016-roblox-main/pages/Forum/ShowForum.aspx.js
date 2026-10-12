@@ -11,3 +11,9 @@ const ShowForumPage = props => {
 }
 
 export default ShowForumPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
