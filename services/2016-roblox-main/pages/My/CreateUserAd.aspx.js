@@ -8,3 +8,9 @@ const CreateUserAdPage = props => {
 }
 
 export default CreateUserAdPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
