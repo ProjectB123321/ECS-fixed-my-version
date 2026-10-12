@@ -12,3 +12,9 @@ const MyTradesPage = props => {
 }
 
 export default MyTradesPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
