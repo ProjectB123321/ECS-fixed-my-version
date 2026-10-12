@@ -15,3 +15,9 @@ export async function getServerSideProps({ query }) {
 }
 
 export default UserPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
