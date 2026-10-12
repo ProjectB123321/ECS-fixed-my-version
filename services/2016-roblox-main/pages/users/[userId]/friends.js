@@ -15,3 +15,8 @@ const UserFriendsPage = props => {
 }
 
 export default UserFriendsPage;
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
