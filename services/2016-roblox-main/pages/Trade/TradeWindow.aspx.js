@@ -8,3 +8,9 @@ const TradeWindowPage = props => {
 }
 
 export default TradeWindowPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
