@@ -8,3 +8,8 @@ const UserFavoritesPage = props => {
 }
 
 export default UserFavoritesPage;
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
