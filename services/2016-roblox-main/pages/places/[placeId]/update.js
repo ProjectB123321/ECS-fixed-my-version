@@ -16,7 +16,17 @@ export default PlaceUpdatePage;
 
 export async function getServerSideProps(context) {
   try {
-    const placeId = context.query?.placeId || context.params?.placeId || null;
+    const placeId = context.params?.placeId || context.query?.placeId || null;
+
+    // Build aşamasında statik export veya ön derleme sırasında parametre yoksa güvenli çıkış yapıyoruz
+    if (!placeId) {
+      return {
+        props: {
+          placeId: null,
+          title: 'Update Place - Eggs21',
+        },
+      };
+    }
 
     return {
       props: {
