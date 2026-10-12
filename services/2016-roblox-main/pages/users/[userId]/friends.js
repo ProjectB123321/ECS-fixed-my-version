@@ -1,13 +1,19 @@
 import dynamic from "next/dynamic";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Theme2016 from "../../../components/theme2016";
 import UserFriendsStore from "../../../components/userFriends/stores/userFriendsStore";
 
-// Sunucu tarafında hata vermemesi için bileşeni dinamik olarak yüklüyoruz
 const UserFriends = dynamic(() => import("../../../components/userFriends"), { ssr: false });
 
 const UserFriendsPage = props => {
   const { userId } = props;
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   return (
     <Theme2016>
