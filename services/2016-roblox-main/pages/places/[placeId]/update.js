@@ -10,3 +10,9 @@ const PlaceUpdatePage = props => {
 }
 
 export default PlaceUpdatePage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
