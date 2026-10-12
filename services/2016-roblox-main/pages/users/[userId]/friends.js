@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
 import React, { useState, useEffect } from "react";
-import Theme2016 from "../../../components/theme2016";
 import UserFriendsStore from "../../../components/userFriends/stores/userFriendsStore";
 
+const Theme2016 = dynamic(() => import("../../../components/theme2016"), { ssr: false });
 const UserFriends = dynamic(() => import("../../../components/userFriends"), { ssr: false });
 
 const UserFriendsPage = props => {
