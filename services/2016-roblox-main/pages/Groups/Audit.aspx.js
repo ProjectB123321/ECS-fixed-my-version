@@ -1,38 +1,34 @@
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import Head from "next/head";
 
-// Sunucu tarafında hata vermemesi için bileşeni dinamik olarak yüklüyoruz
-const GroupAudit = dynamic(() => import("../../components/groupAudit"), { ssr: false });
+// Sunucu tarafında (SSR) hata vermemesi için istemci bileşenlerini dinamik olarak yüklüyoruz
+const Chat = dynamic(() => import("../components/chat"), { ssr: false });
 
-const GroupAuditPage = props => {
-  const { groupId, userId, action } = props;
+function MyApp({ Component, pageProps }) {
+  const [mounted, setMounted] = useState(false);
 
-  return <GroupAudit groupId={groupId} userId={userId} action={action} />;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Sayfadan gelen title prop'unu alıyoruz, yoksa varsayılan başlığı kullanıyoruz
+  const pageTitle = pageProps?.title || 'Eggs21';
+
+  return (
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+
+      {/* Ana Sayfa Bileşeni */}
+      <Component {...pageProps} />
+
+      {/* Yalnızca istemci (client) tarafında render edilen global bileşenler */}
+      {mounted && <Chat />}
+    </>
+  );
 }
 
-export default GroupAuditPage;
-
-export async function getServerSideProps(context) {
-  try {
-    const groupId = context.query?.groupid || null;
-    const userId = context.query?.userid || null;
-    const action = context.query?.action || null;
-
-    return {
-      props: {
-        groupId,
-        userId,
-        action,
-        title: 'Group Audit - Eggs21',
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        groupId: null,
-        userId: null,
-        action: null,
-        title: 'Group Audit - Eggs21',
-      },
-    };
-  }
-}
+export default MyApp;
