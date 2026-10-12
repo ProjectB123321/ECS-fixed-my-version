@@ -1,24 +1,13 @@
 import dynamic from "next/dynamic";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const Theme2016 = dynamic(() => import("../../components/theme2016"), { ssr: false });
-const GroupAudit = dynamic(() => import("../../components/groupAudit"), { ssr: false });
+const GroupAuditContent = dynamic(
+  () => import("../../components/groupAuditContent"),
+  { ssr: false }
+);
 
 const GroupAuditPage = props => {
-  const { groupId } = props;
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
-  return (
-    <Theme2016>
-      <GroupAudit groupId={groupId} />
-    </Theme2016>
-  );
+  return <GroupAuditContent groupId={props.groupId} />;
 }
 
 export default GroupAuditPage;
