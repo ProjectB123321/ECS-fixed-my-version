@@ -30,3 +30,9 @@ export default class JssDocument extends Document {
     }
   }
 }
+
+        export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
