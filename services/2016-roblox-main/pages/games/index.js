@@ -19,3 +19,9 @@ export const getStaticProps = () => {
 }
 
 export default GamesPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
