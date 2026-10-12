@@ -15,9 +15,17 @@ const TradeWindowPage = props => {
 export default TradeWindowPage;
 
 export async function getServerSideProps() {
-  return {
-    props: {
-      title: 'Trade - Eggs21',
-    },
-  };
+  try {
+    return {
+      props: {
+        title: 'Trade - Eggs21',
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        title: 'Trade - Eggs21',
+      },
+    };
+  }
 }
