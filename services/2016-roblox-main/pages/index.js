@@ -13,3 +13,9 @@ const IndexPage = props => {
 }
 
 export default IndexPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
