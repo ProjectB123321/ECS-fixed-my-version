@@ -14,3 +14,9 @@ const MyGroupsPage = props => {
 }
 
 export default MyGroupsPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
