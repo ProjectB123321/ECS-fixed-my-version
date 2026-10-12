@@ -11,16 +11,10 @@ export default function AuthenticatedHomePage() {
   </Theme2016>
 }
 
-export const getStaticProps = () => {
+export async function getServerSideProps() {
   return {
     props: {
       title: 'Home - Eggs21',
     },
-  }
-}
-
-export async function getServerSideProps() {
-  return {
-    props: {},
   };
 }
