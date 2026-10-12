@@ -84,3 +84,9 @@ const CreateGroupPage = props => {
 }
 
 export default CreateGroupPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
