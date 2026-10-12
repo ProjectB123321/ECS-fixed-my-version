@@ -1,11 +1,18 @@
 import dynamic from "next/dynamic";
+import React, { useState, useEffect } from "react";
 import t from "../lib/t";
 
-// Sunucu tarafında hata vermemesi için bileşeni dinamik olarak yüklüyoruz
 const Develop = dynamic(() => import("../components/develop"), { ssr: false });
 
 const DevelopPage = props => {
   const { id } = props;
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   return <Develop id={id} />;
 }
@@ -20,14 +27,14 @@ export async function getServerSideProps(context) {
     return {
       props: {
         id,
-        title: 'Develop - ROBLOX',
+        title: 'Develop - Eggs21',
       },
     };
   } catch (err) {
     return {
       props: {
         id: 0,
-        title: 'Develop - ROBLOX',
+        title: 'Develop - Eggs21',
       },
     };
   }
