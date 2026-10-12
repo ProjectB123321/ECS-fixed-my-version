@@ -1,25 +1,10 @@
 import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
 
 // Sunucu tarafında hata vermemesi için dinamik import kullanıyoruz
 const ForumSubcategory = dynamic(() => import("../../components/forumSubcategory"), { ssr: false });
 
 const ShowForumPage = props => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Build sırasında sunucuda hata oluşmaması için ilk başta boş döndürüyoruz
-  if (!mounted) {
-    return null;
-  }
-
   const { forumId, page } = props;
-  
-  if (!forumId)
-    return null;
 
   return <ForumSubcategory id={forumId} page={page} />;
 }
@@ -36,6 +21,7 @@ export async function getServerSideProps(context) {
       props: {
         forumId,
         page,
+        title: 'Forum - Eggs21',
       },
     };
   } catch (err) {
@@ -43,6 +29,7 @@ export async function getServerSideProps(context) {
       props: {
         forumId: null,
         page: 1,
+        title: 'Forum - Eggs21',
       },
     };
   }
