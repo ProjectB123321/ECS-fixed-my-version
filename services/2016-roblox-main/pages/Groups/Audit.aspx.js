@@ -1,32 +1,28 @@
-import dynamic from "next/dynamic";
+import React, { useState, useEffect } from "react";
+import Head from "next/head";
 
-const GroupAudit = dynamic(() => import("../../components/groupAudit"), { ssr: false });
+function MyApp({ Component, pageProps }) {
+  const [isMounted, setIsMounted] = useState(false);
 
-const GroupAuditPage = props => {
-  const { groupId, userId, action } = props;
-  return <GroupAudit groupId={groupId} userId={userId} action={action} />;
-}
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-export default GroupAuditPage;
+  const pageTitle = pageProps?.title || 'Eggs21';
 
-export async function getServerSideProps(context) {
-  try {
-    return {
-      props: {
-        groupId: context.query?.groupid || null,
-        userId: context.query?.userid || null,
-        action: context.query?.action || null,
-        title: 'Group Audit - Eggs21',
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        groupId: null,
-        userId: null,
-        action: null,
-        title: 'Group Audit - Eggs21',
-      },
-    };
+  if (!isMounted) {
+    return null; // Sunucu tarafında çökmesini engeller
   }
+
+  return (
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
 }
+
+export default MyApp;
