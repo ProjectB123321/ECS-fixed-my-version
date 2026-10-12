@@ -7,3 +7,9 @@ const GroupAuditPage = props => {
 }
 
 export default GroupAuditPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
