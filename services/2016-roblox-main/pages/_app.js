@@ -17,7 +17,10 @@ import MainWrapper from '../components/mainWrapper';
 import GlobalAlert from '../components/globalAlert';
 import ThumbnailStore from "../stores/thumbnailStore";
 import getFlag from "../lib/getFlag";
-import Chat from "../components/chat";
+import dynamic from "next/dynamic";
+
+// Sunucu tarafında (build sırasında) hata vermemesi için Chat bileşenini dinamik yüklüyoruz
+const Chat = dynamic(() => import("../components/chat"), { ssr: false });
 
 if (typeof window !== 'undefined') {
   console.log(String.raw`
@@ -45,7 +48,6 @@ if (typeof window !== 'undefined') {
 
 function RobloxApp({ Component, pageProps }) {
   // set theme:
-  // @ts-ignore
   useEffect(() => {
     const el = typeof window !== 'undefined' && document.getElementsByTagName('body');
     if (el && el.length) {
