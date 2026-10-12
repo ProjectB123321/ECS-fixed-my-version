@@ -84,3 +84,8 @@ function RobloxApp({ Component, pageProps }) {
 }
 
 export default RobloxApp;
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
