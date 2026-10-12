@@ -8,3 +8,9 @@ const MyItemPage = props => {
 }
 
 export default MyItemPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
