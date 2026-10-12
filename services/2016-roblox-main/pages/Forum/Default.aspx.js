@@ -5,3 +5,9 @@ const DefaultPage = props => {
 }
 
 export default DefaultPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
