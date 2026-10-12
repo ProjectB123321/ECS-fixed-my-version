@@ -1,7 +1,10 @@
-import ForumHome from "../../components/forumHome";
+import dynamic from "next/dynamic";
+
+// Sunucu tarafında (SSR) hata vermemesi için dinamik import kullanıyoruz
+const ForumHome = dynamic(() => import("../../components/forumHome"), { ssr: false });
 
 const DefaultPage = props => {
-  return <ForumHome />
+  return <ForumHome />;
 }
 
 export default DefaultPage;
