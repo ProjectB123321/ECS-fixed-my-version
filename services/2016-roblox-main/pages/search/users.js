@@ -7,3 +7,9 @@ const SearchUsersPage = props => {
 }
 
 export default SearchUsersPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
