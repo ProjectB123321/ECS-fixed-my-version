@@ -1,9 +1,11 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import { createUseStyles } from "react-jss";
 import AdBanner from "../../components/ad/adBanner";
-import CharacterPage from "../../components/characterCustomizerPage";
-import MyAvatar from "../../components/characterCustomizerPage/components/avatar";
 import CharacterCustomizationStore from "../../stores/characterPage";
+
+// Sunucu tarafında hata vermemesi için dinamik import kullanıyoruz
+const CharacterPage = dynamic(() => import("../../components/characterCustomizerPage"), { ssr: false });
 
 const useCharacterPageStyles = createUseStyles({
   header: {
