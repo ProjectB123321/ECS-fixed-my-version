@@ -28,9 +28,17 @@ function IndexContent() {
 export default IndexPage;
 
 export async function getServerSideProps() {
-  return {
-    props: {
-      title: 'Home - Eggs21',
-    },
-  };
+  try {
+    return {
+      props: {
+        title: 'Home - Eggs21',
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        title: 'Home - Eggs21',
+      },
+    };
+  }
 }
