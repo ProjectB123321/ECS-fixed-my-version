@@ -19,8 +19,7 @@ import ThumbnailStore from "../stores/thumbnailStore";
 import getFlag from "../lib/getFlag";
 import dynamic from "next/dynamic";
 
-// Sunucu tarafında (build sırasında) hata vermemesi için Chat bileşenini dinamik yüklüyoruz
-const Chat = dynamic(() => import("../components/chat"), { ssr: false });
+
 
 if (typeof window !== 'undefined') {
   console.log(String.raw`
@@ -76,7 +75,6 @@ function RobloxApp({ Component, pageProps }) {
         {getFlag('clientSideRenderingEnabled', false) ? <NextNProgress options={{showSpinner: false}} color='#fff' height={2} /> : null}
         <ThumbnailStore.Provider>
           <Component {...pageProps} />
-          <Chat />
         </ThumbnailStore.Provider>
       </MainWrapper>
       <Footer/>
