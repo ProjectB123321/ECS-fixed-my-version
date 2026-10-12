@@ -21,31 +21,30 @@ import Chat from "../components/chat";
 
 if (typeof window !== 'undefined') {
   console.log(String.raw`
-      _______      _________      _____       ______     _
-     / _____ \    |____ ____|    / ___ \     | ____ \   | |
-    / /     \_\       | |       / /   \ \    | |   \ \  | |
-    | |               | |      / /     \ \   | |   | |  | |
-    \ \______         | |      | |     | |   | |___/ /  | |
-     \______ \        | |      | |     | |   |  ____/   | |
-            \ \       | |      | |     | |   | |        | |
-     _      | |       | |      \ \     / /   | |        |_|
-    \ \_____/ /       | |       \ \___/ /    | |         _
-     \_______/        |_|        \_____/     |_|        |_|
+      _______       _________       _____        ______     _
+     / _____ \     |____ ____|     / ___ \      | ____ \   | |
+    / /     \_\         | |       / /   \ \     | |    \ \  | |
+    | |                 | |      / /     \ \    | |    | |  | |
+    \ \______           | |      | |     | |    | |___/ /  | |
+     \______ \          | |      | |     | |    |  ____/   | |
+            \ \         | |      | |     | |    | |        | |
+    _       | |         | |      \ \     / /    | |        |_|
+    \ \_____/ /         | |       \ \___/ /     | |         _
+     \_______/          |_|        \_____/      |_|        |_|
 
-     Keep your account safe! Do not paste any text here.
+    Keep your account safe! Do not paste any text here.
 
-     If someone is asking you to paste text here then you're
-     giving someone access to your account, your gear, and
-     your ROBUX.
+    If someone is asking you to paste text here then you're
+    giving someone access to your account, your gear, and
+    your ROBUX.
 
-     To learn more about keeping your account safe and not being a dumbass you can go to
+    To learn more about keeping your account safe and not being a dumbass you can go to
 
-     https://en.help.roblox.com/hc/en-us/articles/203313380-Account-Security-Theft-Keeping-your-Account-Safe-`);
+    https://en.help.roblox.com/hc/en-us/articles/203313380-Account-Security-Theft-Keeping-your-Account-Safe-`);
 }
 
 function RobloxApp({ Component, pageProps }) {
   // set theme:
-  // jss globals apparently don't support parameters/props, so the only way to do a dynamic global style is to either append a <style> element, use setAttribute(), or append a css file.
   // @ts-ignore
   useEffect(() => {
     const el = typeof window !== 'undefined' && document.getElementsByTagName('body');
@@ -60,7 +59,7 @@ function RobloxApp({ Component, pageProps }) {
     <Head>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={''} />
-      <title>{pageProps.title || 'ROBLOX'}</title>
+      <title>{pageProps?.title || 'ROBLOX'}</title>
       <link rel='icon' type="image/vnd.microsoft.icon" href='/favicon.ico' />
       <meta name='viewport' content='width=device-width, initial-scale=1' />
     </Head>
@@ -84,8 +83,3 @@ function RobloxApp({ Component, pageProps }) {
 }
 
 export default RobloxApp;
-export async function getServerSideProps() {
-  return {
-    props: {},
-  };
-}
