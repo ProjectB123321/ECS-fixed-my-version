@@ -16,3 +16,9 @@ DevelopPage.getInitialProps = () => {
 }
 
 export default DevelopPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
