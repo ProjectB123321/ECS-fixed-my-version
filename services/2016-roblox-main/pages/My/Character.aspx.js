@@ -56,7 +56,17 @@ const MyCharacterPage = props => {
 export default MyCharacterPage;
 
 export async function getServerSideProps() {
-  return {
-    props: {},
-  };
+  try {
+    return {
+      props: {
+        title: 'Character Customizer - Eggs21',
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        title: 'Character Customizer - Eggs21',
+      },
+    };
+  }
 }
