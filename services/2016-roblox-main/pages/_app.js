@@ -38,7 +38,7 @@ if (typeof window !== 'undefined') {
      giving someone access to your account, your gear, and
      your ROBUX.
 
-     To learn more about keeping your account safe you can go to
+     To learn more about keeping your account safe and not being a dumbass you can go to
 
      https://en.help.roblox.com/hc/en-us/articles/203313380-Account-Security-Theft-Keeping-your-Account-Safe-`);
 }
