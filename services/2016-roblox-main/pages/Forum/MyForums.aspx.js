@@ -1,18 +1,13 @@
 import dynamic from "next/dynamic";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const MyForums = dynamic(() => import("../../components/myForums"), { ssr: false });
+const MyForumsContent = dynamic(
+  () => import("../../components/myForumsContent"),
+  { ssr: false }
+);
 
 const MyForumsPage = props => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
-  return <MyForums />;
+  return <MyForumsContent />;
 }
 
 export default MyForumsPage;
