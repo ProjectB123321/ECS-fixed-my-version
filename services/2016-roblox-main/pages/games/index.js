@@ -1,26 +1,13 @@
 import dynamic from "next/dynamic";
-import React, { useState, useEffect } from "react";
-import GamesPageStore from "../../stores/gamesPage";
+import React from "react";
 
-const Theme2016 = dynamic(() => import("../../components/theme2016"), { ssr: false });
-const Games = dynamic(() => import("../../components/gamesPage"), { ssr: false });
+const GamesPageContent = dynamic(
+  () => import("../../components/gamesPageContent"),
+  { ssr: false }
+);
 
-const GamesPage = props => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
-  return (
-    <Theme2016>
-      <GamesPageStore.Provider>
-        <Games />
-      </GamesPageStore.Provider>
-    </Theme2016>
-  );
+const GamesPage = () => {
+  return <GamesPageContent />;
 }
 
 export default GamesPage;
