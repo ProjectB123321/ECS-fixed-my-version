@@ -99,7 +99,17 @@ const CreateGroupPage = props => {
 export default CreateGroupPage;
 
 export async function getServerSideProps() {
-  return {
-    props: {},
-  };
+  try {
+    return {
+      props: {
+        title: 'Create Group - Eggs21',
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        title: 'Create Group - Eggs21',
+      },
+    };
+  }
 }
