@@ -37,3 +37,9 @@ ShowPostPage.getInitialProps = async (ctx) => {
 }
 
 export default ShowPostPage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
