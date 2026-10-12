@@ -10,18 +10,12 @@ const GamesPage = props => {
   </Theme2016>
 }
 
-export const getStaticProps = () => {
-  return {
-    props: {
-      title: 'Games - ROBLOX',
-    }
-  }
-}
-
 export default GamesPage;
 
 export async function getServerSideProps() {
   return {
-    props: {},
+    props: {
+      title: 'Games - Eggs21',
+    },
   };
 }
