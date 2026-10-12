@@ -1,19 +1,28 @@
-import {useRouter} from "next/dist/client/router";
-import ForumSubcategory from "../../components/forumSubcategory";
+import dynamic from "next/dynamic";
+
+// Sunucu tarafında hata vermemesi için dinamik import kullanıyoruz
+const ForumSubcategory = dynamic(() => import("../../components/forumSubcategory"), { ssr: false });
 
 const ShowForumPage = props => {
-  const router = useRouter();
-  const id = router.query.ForumID;
-  const page = parseInt(router.query.Page, 10);
-  if (!id)
+  const { forumId, page } = props;
+  
+  if (!forumId)
     return null;
-  return <ForumSubcategory id={id} page={Number.isInteger(page) && page > 0 ? page : 1} />
+
+  return <ForumSubcategory id={forumId} page={page} />;
 }
 
 export default ShowForumPage;
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const forumId = context.query?.ForumID || null;
+  const rawPage = parseInt(context.query?.Page, 10);
+  const page = Number.isInteger(rawPage) && rawPage > 0 ? rawPage : 1;
+
   return {
-    props: {},
+    props: {
+      forumId,
+      page,
+    },
   };
 }
