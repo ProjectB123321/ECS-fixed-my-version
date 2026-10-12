@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 import ActionButton from "../../components/actionButton";
 import Robux from "../../components/catalogDetailsPage/components/robux";
@@ -18,6 +18,7 @@ const useStyles = createUseStyles({
 });
 
 const CreateGroupPage = props => {
+  const [mounted, setMounted] = useState(false);
   const [locked, setLocked] = useState(false);
   const [feedback, setFeedback] = useState(null);
 
@@ -25,62 +26,74 @@ const CreateGroupPage = props => {
   const descRef = useRef(null);
   const iconRef = useRef(null);
   const s = useStyles();
-  return <div className={'container ' + s.createGroupContainer}>
-    <div className='row'>
-      <div className='col-12 col-lg-8'>
-        <div className='row'>
-          <div className='col-12'>
-            <h2>Create A Group</h2>
-            {feedback && <p className='text-danger mb-2'>{feedback}</p>}
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Build sırasında sunucuda hata vermemesi için ilk başta boş döndürüyoruz
+  if (!mounted) {
+    return null;
+  }
+
+  return (
+    <div className={'container ' + s.createGroupContainer}>
+      <div className='row'>
+        <div className='col-12 col-lg-8'>
+          <div className='row'>
+            <div className='col-12'>
+              <h2>Create A Group</h2>
+              {feedback && <p className='text-danger mb-2'>{feedback}</p>}
+            </div>
           </div>
-        </div>
-        <div className='row'>
-          <div className='col-12'>
-            <p className='ms-4 fw-600'>Name:</p>
-            <input ref={nameRef} disabled={locked} type='text' autoComplete='off' className={s.input}></input>
+          <div className='row'>
+            <div className='col-12'>
+              <p className='ms-4 fw-600'>Name:</p>
+              <input ref={nameRef} disabled={locked} type='text' autoComplete='off' className={s.input}></input>
+            </div>
           </div>
-        </div>
-        <div className='row mt-4'>
-          <div className='col-12'>
-            <p className='ms-4 fw-600'>Description:</p>
-            <textarea ref={descRef} disabled={locked} rows={16} autoComplete='off' className={s.input}></textarea>
+          <div className='row mt-4'>
+            <div className='col-12'>
+              <p className='ms-4 fw-600'>Description:</p>
+              <textarea ref={descRef} disabled={locked} rows={16} autoComplete='off' className={s.input}></textarea>
+            </div>
           </div>
-        </div>
-        <div className='row mt-4'>
-          <div className='col-12'>
-            <p className='ms-4 fw-600'>Emblem:</p>
-            <input ref={iconRef} disabled={locked} type='file' id='upload-file'></input>
+          <div className='row mt-4'>
+            <div className='col-12'>
+              <p className='ms-4 fw-600'>Emblem:</p>
+              <input ref={iconRef} disabled={locked} type='file' id='upload-file'></input>
+            </div>
           </div>
-        </div>
-        <div className='row mt-0'>
-          <div className='col-12'>
-            <p>Creating a group costs <Robux inline={true}>100</Robux>. By clicking Purchase, your account will be charged <Robux inline={true}>100</Robux>.</p>
+          <div className='row mt-0'>
+            <div className='col-12'>
+              <p>Creating a group costs <Robux inline={true}>100</Robux>. By clicking Purchase, your account will be charged <Robux inline={true}>100</Robux>.</p>
+            </div>
           </div>
-        </div>
-        <div className='row mt-4'>
-          <div className='col-12'>
-            <div className={s.buttonWrapper}>
-              <ActionButton disabled={locked} label='Purchase' onClick={() => {
-                setLocked(true);
-                setFeedback(null);
-                createGroup({
-                  name: nameRef.current.value,
-                  description: descRef.current.value,
-                  iconElement: document.getElementById('upload-file'),
-                }).then(d => {
-                  window.location.href = `/My/Groups.aspx?gid=${d.id}`;
-                }).catch(e => {
-                  setFeedback(e.response?.data?.errors[0]?.message || e.message);
-                }).finally(() => {
-                  setLocked(false);
-                })
-              }}></ActionButton>
+          <div className='row mt-4'>
+            <div className='col-12'>
+              <div className={s.buttonWrapper}>
+                <ActionButton disabled={locked} label='Purchase' onClick={() => {
+                  setLocked(true);
+                  setFeedback(null);
+                  createGroup({
+                    name: nameRef.current.value,
+                    description: descRef.current.value,
+                    iconElement: document.getElementById('upload-file'),
+                  }).then(d => {
+                    window.location.href = `/My/Groups.aspx?gid=${d.id}`;
+                  }).catch(e => {
+                    setFeedback(e.response?.data?.errors[0]?.message || e.message);
+                  }).finally(() => {
+                    setLocked(false);
+                  })
+                }}></ActionButton>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  );
 }
 
 export default CreateGroupPage;
