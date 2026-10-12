@@ -5,3 +5,9 @@ const GamePage = props => {
 }
 
 export default GamePage;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
