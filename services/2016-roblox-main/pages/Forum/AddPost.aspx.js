@@ -18,13 +18,24 @@ const AddPostPage = props => {
 export default AddPostPage;
 
 export async function getServerSideProps(context) {
-  const subId = context.query?.ForumID || null;
-  const id = context.query?.PostID || null;
+  try {
+    const subId = context.query?.ForumID || null;
+    const id = context.query?.PostID || null;
 
-  return {
-    props: {
-      subId,
-      id,
-    },
-  };
+    return {
+      props: {
+        subId,
+        id,
+        title: 'Create/Reply Post - Eggs21',
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        subId: null,
+        id: null,
+        title: 'Create/Reply Post - Eggs21',
+      },
+    };
+  }
 }
