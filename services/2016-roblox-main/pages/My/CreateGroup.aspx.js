@@ -1,8 +1,8 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { createUseStyles } from "react-jss";
-import ActionButton from "../../components/actionButton";
-import Robux from "../../components/catalogDetailsPage/components/robux";
-import { createGroup } from "../../services/groups";
+import ActionButton from "./actionButton";
+import Robux from "./catalogDetailsPage/components/robux";
+import { createGroup } from "../services/groups";
 
 const useStyles = createUseStyles({
   input: {
@@ -17,8 +17,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const CreateGroupPage = props => {
-  const [mounted, setMounted] = useState(false);
+export default function CreateGroup() {
   const [locked, setLocked] = useState(false);
   const [feedback, setFeedback] = useState(null);
 
@@ -26,15 +25,6 @@ const CreateGroupPage = props => {
   const descRef = useRef(null);
   const iconRef = useRef(null);
   const s = useStyles();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Build sırasında sunucuda hata vermemesi için ilk başta boş döndürüyoruz
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <div className={'container ' + s.createGroupContainer}>
@@ -94,22 +84,4 @@ const CreateGroupPage = props => {
       </div>
     </div>
   );
-}
-
-export default CreateGroupPage;
-
-export async function getServerSideProps() {
-  try {
-    return {
-      props: {
-        title: 'Create Group - Eggs21',
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        title: 'Create Group - Eggs21',
-      },
-    };
-  }
 }
