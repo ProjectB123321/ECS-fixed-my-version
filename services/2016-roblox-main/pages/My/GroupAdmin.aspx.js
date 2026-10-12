@@ -8,3 +8,9 @@ const MyGroupAdmin = props => {
 }
 
 export default MyGroupAdmin;
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
