@@ -1,16 +1,34 @@
-import {useRouter} from "next/dist/client/router";
-import GroupAdmin from "../../components/groupAdmin";
+import dynamic from "next/dynamic";
+import React from "react";
+
+// Sunucu tarafında hata vermemesi için bileşeni dinamik olarak yüklüyoruz
+const GroupAdmin = dynamic(() => import("../../components/groupAdmin"), { ssr: false });
 
 const MyGroupAdmin = props => {
-  const router = useRouter();
-  if (!router.query.gid) return null;
-  return <GroupAdmin groupId={parseInt(router.query.gid, 10)} />
+  const { groupId } = props;
+
+  return <GroupAdmin groupId={groupId} />;
 }
 
 export default MyGroupAdmin;
 
-export async function getServerSideProps() {
-  return {
-    props: {},
-  };
+export async function getServerSideProps(context) {
+  try {
+    const rawGid = context.query?.gid || null;
+    const groupId = parseInt(rawGid, 10) || 0;
+
+    return {
+      props: {
+        groupId,
+        title: 'Group Admin - Eggs21',
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        groupId: 0,
+        title: 'Group Admin - Eggs21',
+      },
+    };
+  }
 }
