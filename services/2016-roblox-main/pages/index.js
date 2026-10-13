@@ -1,29 +1,21 @@
-import dynamic from "next/dynamic";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import AuthenticationStore from "../stores/authentication";
 
-const IndexContent = dynamic(
-  () => import("../components/indexContent"),
-  { ssr: false }
-);
+export default function IndexContent() {
+  const [isMounted, setIsMounted] = useState(false);
+  const auth = AuthenticationStore.useContainer();
 
-const IndexPage = () => {
-  return <IndexContent />;
-};
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-export default IndexPage;
+  useEffect(() => {
+    if (isMounted && auth.isAuthenticated) {
+      window.location.href = '/home';
+    }
+  }, [isMounted, auth.isAuthenticated]);
 
-export async function getServerSideProps() {
-  try {
-    return {
-      props: {
-        title: 'Home - Eggs21',
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        title: 'Home - Eggs21',
-      },
-    };
-  }
+  if (!isMounted) return null;
+
+  return null;
 }
