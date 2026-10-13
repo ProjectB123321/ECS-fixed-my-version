@@ -1,18 +1,13 @@
 import dynamic from "next/dynamic";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const ForumHome = dynamic(() => import("../../components/forumHome"), { ssr: false });
+const ForumHomeContent = dynamic(
+  () => import("../../components/forumHomeContent"),
+  { ssr: false }
+);
 
-const DefaultPage = props => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
-  return <ForumHome />;
+const DefaultPage = () => {
+  return <ForumHomeContent />;
 }
 
 export default DefaultPage;
