@@ -1,29 +1,14 @@
-import { useEffect, useState } from "react";
-import AuthenticationStore from "../stores/authentication";
+import dynamic from "next/dynamic";
+import React from "react";
+
+const IndexContent = dynamic(
+  () => import("../components/indexContent"),
+  { ssr: false }
+);
 
 const IndexPage = () => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
   return <IndexContent />;
 };
-
-function IndexContent() {
-  const auth = AuthenticationStore.useContainer();
-  
-  useEffect(() => {
-    if (auth.isAuthenticated) {
-      window.location.href = '/home';
-    }
-  }, [auth.isAuthenticated]);
-
-  return null;
-}
 
 export default IndexPage;
 
