@@ -1,35 +1,33 @@
-const UserPage = props => {
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
+
+const UserPage = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get('ID') || params.get('id');
+
+    if (userId) {
+      router.replace(`/users/${userId}/profile`);
+    } else {
+      router.replace('/home');
+    }
+  }, [router]);
+
   return null;
 }
 
-export async function getServerSideProps(context) {
+export default UserPage;
+
+export async function getServerSideProps() {
   try {
-    const query = context?.query || {};
-    const userId = query['ID'] || query['id'];
-
-    if (!userId) {
-      return {
-        redirect: {
-          destination: '/home',
-          permanent: false,
-        },
-      };
-    }
-
     return {
-      redirect: {
-        destination: `/users/${userId}/profile`,
-        permanent: false,
-      },
+      props: {},
     };
   } catch (err) {
     return {
-      redirect: {
-        destination: '/home',
-        permanent: false,
-      },
+      props: {},
     };
   }
 }
-
-export default UserPage;
