@@ -1,29 +1,16 @@
 import dynamic from "next/dynamic";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const CatalogContent = dynamic(
-  () => import("../../components/catalogContent"),
-  { ssr: false }
-);
+const CatalogInner = dynamic(() => import("./catalogInner"), { ssr: false });
 
-const CatalogPage = () => {
-  return <CatalogContent />;
-};
+export default function CatalogContent() {
+  const [isMounted, setIsMounted] = useState(false);
 
-export default CatalogPage;
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-export async function getServerSideProps() {
-  try {
-    return {
-      props: {
-        title: 'Catalog - ROBLOX',
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        title: 'Catalog - ROBLOX',
-      },
-    };
-  }
+  if (!isMounted) return null;
+
+  return <CatalogInner />;
 }
